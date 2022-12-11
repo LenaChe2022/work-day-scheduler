@@ -1,8 +1,11 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
-var currentTime = dayjs().format('H');
+
+var currentTime = 9;
+//var currentTime = dayjs().format('H');
 console.log(currentTime);
+
 
 var rootEl = $('#root');
 //console.log gust for test:
@@ -18,6 +21,7 @@ function displayCurrentDay() {
 //I want to create list of lines from 9AM to 5PM:
 var hoursOfDay = ['9AM','10AM','11AM','12PM','1PM','2PM','3PM','4PM','5PM',];
 var hoursClass = ['hour-9', 'hour-10','hour-11','hour-12','hour-13','hour-14','hour-15','hour-16','hour-17'];
+var timeArray = ['9','10','11','12','13','14','15','16','17'];
 
 
  for (let i = 0; i < hoursOfDay.length; i++) {
@@ -27,6 +31,23 @@ var hoursClass = ['hour-9', 'hour-10','hour-11','hour-12','hour-13','hour-14','h
   mainBoxEl.attr('id',hoursClass[i]);
   mainBoxEl.attr('class', 'row time-block');
   rootEl.append(mainBoxEl);
+
+  //compare the time and change the color of the box
+//class = past, present or future
+    if (currentTime == Number(timeArray[i])){
+    console.log('present');
+    mainBoxEl.addClass('present');
+    }
+    else if (currentTime > Number(timeArray[i])){
+    console.log('past');
+    mainBoxEl.addClass('past');
+    }
+    else {
+    console.log('future');
+    mainBoxEl.addClass('future');
+    }
+
+
   
   var hourBoxEl = $('<div>').text(hoursOfDay[i]);
   hourBoxEl.attr('class', 'col-2 col-md-1 hour text-center py-3');
@@ -36,10 +57,6 @@ var hoursClass = ['hour-9', 'hour-10','hour-11','hour-12','hour-13','hour-14','h
   textAreaEl.attr('class', 'col-8 col-md-10 description');
   textAreaEl.attr('raw', '3');
   mainBoxEl.append(textAreaEl);
-
-//compare the time and change the color of the box
-//class = past, present or future
-  
 
   var SaveButtonEl = $('<button>');
   SaveButtonEl.attr('class','btn saveBtn col-2 col-md-1');
