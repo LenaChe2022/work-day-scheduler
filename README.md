@@ -12,6 +12,7 @@ N/A
 ## Usage
 
 To use this Work Day Scheduler, you can load the web page using this link:
+https://lenache2022.github.io/work-day-scheduler/
 
 You wil see this page.
 
